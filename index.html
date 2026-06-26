@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment Tracker</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.x/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── App Shell ── -->
+  <div class="at-tracker">
+    <h1 class="sr-only">College Assignment Submission Tracker</h1>
+
+    <!-- Header -->
+    <div class="at-header">
+      <div>
+        <p class="at-title">College Assignments Submission Tracker</p>
+        <p class="at-subtitle" id="subtitle">0 total · 0% submitted</p>
+      </div>
+      <button class="btn-add" id="btn-open-add">
+        <i class="ti ti-plus"></i> Add assignment
+      </button>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress-bar-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <p class="stat-label">Total</p>
+        <p class="stat-value" id="stat-total">0</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-label">Submitted</p>
+        <p class="stat-value success" id="stat-submitted">0</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-label">Due soon</p>
+        <p class="stat-value warning" id="stat-soon">0</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-label">Overdue</p>
+        <p class="stat-value danger" id="stat-overdue">0</p>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="at-controls">
+      <div class="search-wrap">
+        <i class="ti ti-search"></i>
+        <input type="text" id="search-input" placeholder="Search assignments…" aria-label="Search assignments" />
+      </div>
+      <select id="filter-status" aria-label="Filter by status">
+        <option value="all">All statuses</option>
+        <option value="pending">Pending</option>
+        <option value="in-progress">In progress</option>
+        <option value="submitted">Submitted</option>
+      </select>
+      <select id="filter-course" aria-label="Filter by course">
+        <option value="all">All courses</option>
+        <option value="CS401">CS401</option>
+        <option value="MATH301">MATH301</option>
+        <option value="ENG202">ENG202</option>
+        <option value="PHY110">PHY110</option>
+        <option value="HIS205">HIS205</option>
+        <option value="BIO320">BIO320</option>
+      </select>
+    </div>
+
+    <!-- Assignment list -->
+    <div class="assignments" id="assignment-list" role="list"></div>
+  </div>
+
+  <!-- ── Modal ── -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" role="dialog" aria-modal="true">
+      <p class="modal-title" id="modal-title">Add assignment</p>
+
+      <div class="field">
+        <label for="f-title">Title</label>
+        <input id="f-title" type="text" placeholder="Assignment or project name" />
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="f-course">Course</label>
+          <select id="f-course">
+            <option>AI</option>
+            <option>DATA SCIENCE</option>
+            <option>DBMS</option>
+            <option>OPERATING SYSTEMS</option>
+            <option>ASP.NET</option>
+            <option>JAVASCRIPT</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-due">Due date</label>
+          <input id="f-due" type="date" />
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="f-priority">Priority</label>
+          <select id="f-priority">
+            <option value="high">High</option>
+            <option value="med" selected>Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-status">Status</label>
+          <select id="f-status">
+            <option value="pending" selected>Pending</option>
+            <option value="in-progress">In progress</option>
+            <option value="submitted">Submitted</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="f-notes">Notes (optional)</label>
+        <textarea id="f-notes" placeholder="Reminders, links, requirements…"></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-cancel" id="btn-cancel">Cancel</button>
+        <button class="btn-save"   id="btn-save">Add assignment</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
